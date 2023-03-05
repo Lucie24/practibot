@@ -68,27 +68,27 @@
 
               <div>
                   <input type="checkbox" id="s1" name="s1">
-                  <label for="scales">Maux de tête</label>
+                  <label for="s1">Maux de tête</label>
               </div>
 
               <div>
                   <input type="checkbox" id="s4" name="s4">
-                  <label for="horns">Saignements</label>
+                  <label for="s4">Saignements</label>
               </div>
 
               <div>
                   <input type="checkbox" id="s7" name="s7">
-                  <label for="horns">Toux</label>
+                  <label for="s7">Toux</label>
               </div>
 
               <div>
                   <input type="checkbox" id="s10" name="s10">
-                  <label for="horns">Fièvre</label>
+                  <label for="s10">Fièvre</label>
               </div>
               
               <div>
                   <input type="checkbox" id="s13" name="s13">
-                  <label for="horns">Malaise</label>
+                  <label for="s13">Malaise</label>
               </div>
 
             </div>
@@ -97,25 +97,25 @@
 
               <div>
                   <input type="checkbox" id="s2" name="s2">
-                  <label for="scales">Ecoulement nasal</label>
+                  <label for="s2">Ecoulement nasal</label>
               </div>
 
               <div>
                   <input type="checkbox" id="s5" name="s5">
-                  <label for="horns">Tachicardie</label>
+                  <label for="s5">Tachycardie</label>
               </div>
 
               <div>
                   <input type="checkbox" id="s8" name="s8">
-                  <label for="horns">Douleur à la poitrine</label>
+                  <label for="s8">Douleur à la poitrine</label>
               </div>
                           <div>
                   <input type="checkbox" id="s11" name="s11">
-                  <label for="horns">Difficulté respiratoire</label>
+                  <label for="s11">Difficulté respiratoire</label>
               </div>
                           <div>
                   <input type="checkbox" id="s14" name="s14">
-                  <label for="horns">Symptôme 14</label>
+                  <label for="s14">Symptôme 14</label>
               </div>
 
             </div>
@@ -124,25 +124,25 @@
 
             <div>
                 <input type="checkbox" id="s3" name="s3">
-                <label for="scales">Symptôme 3</label>
+                <label for="s3">Symptôme 3</label>
             </div>
 
             <div>
                 <input type="checkbox" id="s6" name="s6">
-                <label for="horns">Symptôme 6</label>
+                <label for="s6">Symptôme 6</label>
             </div>
 
             <div>
                 <input type="checkbox" id="s9" name="s9">
-                <label for="horns">Symptôme 9</label>
+                <label for="s9">Symptôme 9</label>
             </div>
                         <div>
                 <input type="checkbox" id="s12" name="s12">
-                <label for="horns">Symptôme 12</label>
+                <label for="s12">Symptôme 12</label>
             </div>
                         <div>
                 <input type="checkbox" id="s15" name="s15">
-                <label for="horns">Symptôme 15</label>
+                <label for="s15">Symptôme 15</label>
             </div>
 
             </div>

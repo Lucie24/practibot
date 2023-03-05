@@ -32,7 +32,7 @@
 
     <?php
         #Footer
-        #include "../components/footer.html";
+        include "../components/footer.html";
         include "../components/buttonTop.html";
         include "../components/scripts.html";
     ?>
