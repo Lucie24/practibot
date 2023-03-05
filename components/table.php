@@ -12,10 +12,16 @@
 
     <?php
         #Boucle de colonnes
-        for ($i = 0; $i < 3; $i++){
+        for ($i = 0; $i < 10; $i++){
+
+            if ($i % 2 == 0) {
+                echo "<tr class='bgGrey'>";
+            }
+            else {
+                echo "<tr>";
+            }
 
             ?>
-            <tr>
                 <td>Nom</td>
                 <td>Prénom</td>
                 <td>Age</td>

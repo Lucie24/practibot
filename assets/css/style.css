@@ -1230,8 +1230,7 @@ section {
 --------------------------------------------------------------*/
 
 table {
-  justify-content: center;
-  align-items: center;
+  margin : 0 auto;
 }
 
 td {
@@ -1318,9 +1317,13 @@ td {
 }
 
 .black {
-    color: #2c4964;
+  color: #2c4964;
 }
 
 .black:hover {
-    color: #fff;
+  color: #fff;
+}
+
+.bgGrey {
+  background-color: #bfdcf7;
 }
