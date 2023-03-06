@@ -22,17 +22,17 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="text" name="login" class="form-control" id="id_sign" placeholder="Identifiant">
+                    <input type="text" name="log" class="form-control" id="log" placeholder="Identifiant">
                 </div>
                 <div class="form-group marginThinTop">
-                    <input type="text" name="password" class="form-control" id="password_sign" placeholder="Mot de passe">
+                    <input type="text" name="mdp" class="form-control" id="mdp" placeholder="Mot de passe">
                 </div>
                 <div class="form-group marginThinTop flexRow spaceBetween">
                     <div>
-                        <input type="text" name="surname" class="form-control" id="surname_sign" placeholder="Nom">
+                        <input type="text" name="nom" class="form-control" id="nom" placeholder="Nom">
                     </div>
                     <div>
-                        <input type="text" name="name" class="form-control" id="name_sign" placeholder="Prénom">
+                        <input type="text" name="prenom" class="form-control" id="prenom" placeholder="Prénom">
                     </div>
                 </div>
                 <div class="form-group marginThinTop">
@@ -40,11 +40,19 @@
                     <div class="validate"></div>
                 </div>
                 <div class="form-group marginThinTop">
+
+                    <?php
+                    include "../components/liste_dep.html";
+                    ?>
+
+                    <div class="validate"></div>
+                </div>
+                <div class="form-group marginThinTop">
                     <select name="specialite" id="specialite" class="form-select">
                         <option value="">Spécialité</option>
-                        <option value="specialite_1">Généraliste</option>
-                        <option value="specialite_2">Gériatre</option>
-                        <option value="specialite_3">Cardiologue</option>
+                        <option value="1">Généraliste</option>
+                        <option value="2">Gériatre</option>
+                        <option value="3">Cardiologue</option>
                     </select>
                     <div class="validate"></div>
                 </div>

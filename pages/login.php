@@ -14,7 +14,7 @@
     <main class="marginFatTop backgroundCover">
         
         <!-- Formulaire de connexion -->
-        <form action="praticien.php" method="post" role="form">
+        <form action="login.php" method="post" role="form">
             <div class="containerDiv">
 
                 <div class="section-title">
@@ -22,10 +22,10 @@
                 </div>
 
                 <div class="form-group">
-                        <input type="text" name="login" class="form-control" id="id_login" placeholder="Identifiant">
+                        <input type="text" name="log" class="form-control" id="log" placeholder="Identifiant">
                 </div>
                 <div class="form-group marginThinTop">
-                        <input type="text" name="password" class="form-control" id="password_login" placeholder="Mot de passe">
+                        <input type="text" name="mdp" class="form-control" id="mdp" placeholder="Mot de passe">
                 </div>
                 <div class="text-end marginThinTop">
                     <button type="submit" class="btn btnPrimary">Se connecter</button>
@@ -35,6 +35,80 @@
                 </div>
             </div>
         </form>
+
+        <?php
+            include "../components/bdd_connexion.php";
+
+            if (!empty($_POST)) {
+
+                if (!empty($_POST['nom'])){
+
+                    //Récupération des données
+
+                    $nom = $_POST['nom'];
+                    $prenom = $_POST['prenom'];
+                    $email = $_POST['email'];
+                    $specialite = $_POST['specialite'];
+                    $departement = $_POST['departement'];
+                    $log = $_POST['log'];
+                    $mdp = $_POST['mdp'];
+
+                    var_dump($_POST);
+
+                    //$sql = "INSERT INTO praticien (nom, prenom, email, specialite, departement, log, mdp)
+                    //VALUES ('$nom', '$prenom', '$email', '$specialite', '$departement', '$log', '$mdp');";
+                    //$res = $conn->query($sql);
+
+                    // Préparation de la requête préparée
+                    $sql = "INSERT INTO praticien (nom, prenom, email, specialite, departement, log, mdp) VALUES (:nom, :prenom, :email, :specialite, :departement, :log, :mdp)";
+                    $stmt = $conn->prepare($sql);
+
+                    // Liaison des variables avec les paramètres de la requête préparée
+                    $stmt->bindParam(':nom', $nom);
+                    $stmt->bindParam(':prenom', $prenom);
+                    $stmt->bindParam(':email', $email);
+                    $stmt->bindParam(':specialite', $specialite);
+                    $stmt->bindParam(':departement', $departement);
+                    $stmt->bindParam(':log', $log);
+                    $stmt->bindParam(':mdp', $mdp);
+
+                    // Exécution de la requête préparée
+                    $stmt->execute();
+                }
+                else {
+
+                    //Récupération des données
+                    
+                    $log = $_POST['log'];
+                    $mdp = $_POST['mdp'];
+
+                    var_dump($_POST);
+
+                    // Préparation de la requête préparée
+
+                    $stmt = $conn->prepare("SELECT * FROM praticien WHERE log = :log");
+                    $stmt->execute(['log' => $log]);
+
+                    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                    if (!$user) {
+                        
+                        echo "l'utilisateur n'existe pas";
+
+                        exit;
+                    }
+
+                    if (!password_verify($mdp, $user['mdp'])) {
+                        
+                        echo "le mot de passe est incorrect";
+
+                        exit;
+                    }
+
+                }
+            }
+        ?>
+
     </main>
 
     <?php
