@@ -10,7 +10,7 @@
 
 <?php
     #Header
-    include '../components/header.php';
+    include '../components/header_co.php';
 ?>
 
     <main class="marginFatTop">

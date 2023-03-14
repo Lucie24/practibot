@@ -1,3 +1,46 @@
+<?php
+
+    include "../components/bdd_connexion.php";
+    
+    if (!empty($_POST['nom'])){
+
+    //Récupération des données
+
+    $nom = $_POST['nom'];
+    $prenom = $_POST['prenom'];
+    $email = $_POST['email'];
+    $specialite = $_POST['specialite'];
+    $departement = $_POST['departement'];
+    $id = $_POST['id'];
+    $mdp = $_POST['mdp'];
+    $mdp2 = $_POST['mdp2'];
+
+    // Préparation de la requête préparée
+    $sql = "INSERT INTO praticien (nom, prenom, email, specialite, departement, id, mdp) VALUES (:nom, :prenom, :email, :specialite, :departement, :id, :mdp)";
+    $stmt = $conn->prepare($sql);
+
+    // Liaison des variables avec les paramètres de la requête préparée
+    $stmt->bindParam(':nom', $nom);
+    $stmt->bindParam(':prenom', $prenom);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':specialite', $specialite);
+    $stmt->bindParam(':departement', $departement);
+    $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':mdp', $mdp);
+
+    // Exécution de la requête préparée
+    $stmt->execute();
+
+    if (!$stmt) {
+        echo "\nPDO::errorInfo():\n";
+        print_r($dbh->errorInfo());
+    }
+    
+    unset($_POST);
+    header('Location: login.php');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -14,7 +57,7 @@
     <main class="marginFatTop">
         
         <!-- Formulaire de connexion -->
-        <form action="login.php" method="post" role="form">
+        <form action="signup.php" method="post" role="form">
             <div class="containerDiv">
 
                 <div class="section-title">
@@ -22,10 +65,13 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="text" name="log" class="form-control" id="log" placeholder="Identifiant">
+                    <input type="text" name="id" class="form-control" id="id" placeholder="Identifiant">
                 </div>
                 <div class="form-group marginThinTop">
-                    <input type="text" name="mdp" class="form-control" id="mdp" placeholder="Mot de passe">
+                    <input type="password" name="mdp" class="form-control" id="mdp" placeholder="Mot de passe">
+                </div>
+                <div class="form-group marginThinTop">
+                    <input type="password" name="mdp2" class="form-control" id="mdp2" placeholder="Confirmer votre mot de passe">
                 </div>
                 <div class="form-group marginThinTop flexRow spaceBetween">
                     <div>

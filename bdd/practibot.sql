@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Lun 06 Mars 2023 à 21:30
+-- Généré le :  Mar 07 Mars 2023 à 10:26
 -- Version du serveur :  5.7.11
 -- Version de PHP :  5.6.18
 
@@ -30,13 +30,13 @@ USE `practibot`;
 
 CREATE TABLE `patient` (
   `id_patient` int(11) NOT NULL,
-  `nom` varchar(50) NOT NULL,
-  `prenom` varchar(50) NOT NULL,
+  `nom` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
+  `prenom` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
   `age` int(3) NOT NULL,
-  `mail` varchar(50) NOT NULL,
+  `mail` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
   `tel` int(10) DEFAULT NULL,
   `departement` int(3) NOT NULL,
-  `medecin_traitant` int(4) NOT NULL,
+  `medecin_traitant` int(4) DEFAULT NULL,
   `s1` tinyint(1) DEFAULT NULL,
   `s2` tinyint(1) DEFAULT NULL,
   `s3` tinyint(1) DEFAULT NULL,
@@ -59,7 +59,23 @@ CREATE TABLE `patient` (
 --
 
 INSERT INTO `patient` (`id_patient`, `nom`, `prenom`, `age`, `mail`, `tel`, `departement`, `medecin_traitant`, `s1`, `s2`, `s3`, `s4`, `s5`, `s6`, `s7`, `s8`, `s9`, `s10`, `s11`, `s12`, `s13`, `s14`, `s15`) VALUES
-(1, 'Lebrun', 'Francis', 45, 'lebrunf@gmail.com', NULL, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0);
+(1, 'Lebrun', 'Francis', 45, 'lebrunf@gmail.com', NULL, 1, 1, 1, 1, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 'lebrowski', 'stanislas', 80, 'stanislasleb@hotmail.com', 836656565, 24, 3, NULL, NULL, NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 'rodriguez', 'sabrina', 28, 'sabsab82@yahoo.fr', 125184692, 82, 8, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL),
+(4, 'bezos', 'jeff', 53, 'jbezos@amazon.us', 102030405, 97, 5, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 'martin', 'martin', 12, 'tintin@yahoo.fr', 666666666, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(6, 'blaro', 'damien', 31, 'blablaro@hotmail.fr', 678952843, 38, 1, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL),
+(7, 'snifnier', 'jean', 42, 'snifnie78@gmail.com', NULL, 78, 2, NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(8, 'bourgeon', 'michel', 67, 'bmichel@gmail.com', NULL, 54, 3, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, 1, 1, NULL),
+(9, 'lebreton', 'josé', 69, 'lebretonj@outlook.fr', 842975381, 59, 13, NULL, 1, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(10, 'truchassou', 'véronique', 76, 'verotrucha@gmail.com', 579426841, 57, 0, 1, NULL, NULL, NULL, 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(13, 'grand', 'adrien', 29, 'adrien.g@gmail.com', 548963874, 26, NULL, 1, NULL, NULL, 1, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(14, 'bisca', 'régis', 82, 'biscarotte@orange.fr', 574196384, 64, NULL, NULL, 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(15, 'bost', 'françoise', 86, 'bostfr@yahoo.fr', 845236951, 86, NULL, 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(16, 'martinez', 'julie', 28, 'julie.martinez71@example.com', 612345678, 71, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(17, 'nguyen', 'thomas', 41, 'thomas.nguyen23@example.com', 623456789, 23, NULL, 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(18, 'dubois', 'sophie', 22, 'sophie.dubois49@example.com', 745985236, 49, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL),
+(19, 'lefèbvre', 'pierre', 37, 'pierre.lefevre67@example.com', 854763269, 67, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -74,7 +90,7 @@ CREATE TABLE `praticien` (
   `email` varchar(50) NOT NULL,
   `specialite` int(1) NOT NULL,
   `departement` int(3) NOT NULL,
-  `log` varchar(50) NOT NULL,
+  `id` varchar(50) NOT NULL,
   `mdp` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -82,8 +98,8 @@ CREATE TABLE `praticien` (
 -- Contenu de la table `praticien`
 --
 
-INSERT INTO `praticien` (`id_praticien`, `nom`, `prenom`, `email`, `specialite`, `departement`, `log`, `mdp`) VALUES
-(6, 'nom', 'prenom', 'email@gmail.com', 1, 15, 'login', 'mdp');
+INSERT INTO `praticien` (`id_praticien`, `nom`, `prenom`, `email`, `specialite`, `departement`, `id`, `mdp`) VALUES
+(1, 'nom', 'prenom', 'email@gmail.com', 1, 15, 'login', 'mdp');
 
 --
 -- Index pour les tables exportées
@@ -109,7 +125,7 @@ ALTER TABLE `praticien`
 -- AUTO_INCREMENT pour la table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `id_patient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_patient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT pour la table `praticien`
 --

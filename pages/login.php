@@ -1,62 +1,32 @@
 <?php
     include "../components/bdd_connexion.php";
 
+    # Si la variable POST est remplie
     if (!empty($_POST)) {
 
-        if (!empty($_POST['nom'])){
+        //Récupération des données
+        
+        $id = $_POST['id'];
+        $mdp = $_POST['mdp'];
 
-            //Récupération des données
+        // Préparation de la requête préparée
 
-            $nom = $_POST['nom'];
-            $prenom = $_POST['prenom'];
-            $email = $_POST['email'];
-            $specialite = $_POST['specialite'];
-            $departement = $_POST['departement'];
-            $log = $_POST['log'];
-            $mdp = $_POST['mdp'];
+        $stmt = $conn->prepare("SELECT * FROM praticien WHERE id = :id AND mdp = :mdp");
+        $stmt->execute(['id' => $id, 'mdp' => $mdp]);
 
-            // Préparation de la requête préparée
-            $sql = "INSERT INTO praticien (nom, prenom, email, specialite, departement, log, mdp) VALUES (:nom, :prenom, :email, :specialite, :departement, :log, :mdp)";
-            $stmt = $conn->prepare($sql);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            // Liaison des variables avec les paramètres de la requête préparée
-            $stmt->bindParam(':nom', $nom);
-            $stmt->bindParam(':prenom', $prenom);
-            $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':specialite', $specialite);
-            $stmt->bindParam(':departement', $departement);
-            $stmt->bindParam(':log', $log);
-            $stmt->bindParam(':mdp', $mdp);
-
-            // Exécution de la requête préparée
-            $stmt->execute();
+        if (!$user) {
+            
+            $errorLogin = "<p class='red marginThinTop'>Votre identifiant ou votre mot de passe est incorrect</p>";
         }
+        
         else {
 
-            //Récupération des données
-            
-            $log = $_POST['log'];
-            $mdp = $_POST['mdp'];
-
-            // Préparation de la requête préparée
-
-            $stmt = $conn->prepare("SELECT * FROM praticien WHERE log = :log AND mdp = :mdp");
-            $stmt->execute(['log' => $log, 'mdp' => $mdp]);
-
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            if (!$user) {
-                
-                echo "l'utilisateur n'existe pas";
-            }
-            
-            else {
-
-                header('Location: praticien.php');
-                exit;
-            }
-
+            header('Location: praticien.php');
+            exit;
         }
+
     }
 ?>
 
@@ -85,11 +55,18 @@
                 </div>
 
                 <div class="form-group">
-                        <input type="text" name="log" class="form-control" id="log" placeholder="Identifiant">
+                        <input type="text" name="id" class="form-control" id="id" placeholder="Identifiant">
                 </div>
                 <div class="form-group marginThinTop">
-                        <input type="text" name="mdp" class="form-control" id="mdp" placeholder="Mot de passe">
+                        <input type="password" name="mdp" class="form-control" id="mdp" placeholder="Mot de passe">
                 </div>
+
+                <?php
+                    if (!empty($errorLogin)) {
+                        echo $errorLogin;
+                    }
+                ?>
+
                 <div class="text-end marginThinTop">
                     <button type="submit" class="btn btnPrimary">Se connecter</button>
                 </div>
