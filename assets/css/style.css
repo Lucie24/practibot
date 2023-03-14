@@ -1259,6 +1259,10 @@ td {
 # Attributs simples
 --------------------------------------------------------------*/
 
+.textLeft {
+  text-align: left;
+}
+
 .marginFatTop {
   margin-top : 5rem;
 }
