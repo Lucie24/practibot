@@ -2,42 +2,99 @@
 
     include "../components/bdd_connexion.php";
     
-    if (!empty($_POST['nom'])){
+    if (!empty($_POST)){
+        if (!empty($_POST['id'])){
+            if (!empty($_POST['mdp'])){
+                if (!empty($_POST['mdp2'])){
+                    if (!empty($_POST['nom'])){
+                        if (!empty($_POST['prenom'])){
+                            if (!empty($_POST['email'])){
+                                if (!empty($_POST['departement'])){
+                                    if (!empty($_POST['specialite'])){
 
-    //Récupération des données
+                                            // Récupération des données
 
-    $nom = $_POST['nom'];
-    $prenom = $_POST['prenom'];
-    $email = $_POST['email'];
-    $specialite = $_POST['specialite'];
-    $departement = $_POST['departement'];
-    $id = $_POST['id'];
-    $mdp = $_POST['mdp'];
-    $mdp2 = $_POST['mdp2'];
+                                            $nom = htmlspecialchars($_POST['nom']);
+                                            $prenom = htmlspecialchars($_POST['prenom']);
+                                            $email = htmlspecialchars($_POST['email']);
+                                            $specialite = htmlspecialchars($_POST['specialite']);
+                                            $departement = htmlspecialchars($_POST['departement']);
+                                            $id = htmlspecialchars($_POST['id']);
+                                            $mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
 
-    // Préparation de la requête préparée
-    $sql = "INSERT INTO praticien (nom, prenom, email, specialite, departement, id, mdp) VALUES (:nom, :prenom, :email, :specialite, :departement, :id, :mdp)";
-    $stmt = $conn->prepare($sql);
+                                        if ($_POST['mdp'] == $_POST['mdp2']){
 
-    // Liaison des variables avec les paramètres de la requête préparée
-    $stmt->bindParam(':nom', $nom);
-    $stmt->bindParam(':prenom', $prenom);
-    $stmt->bindParam(':email', $email);
-    $stmt->bindParam(':specialite', $specialite);
-    $stmt->bindParam(':departement', $departement);
-    $stmt->bindParam(':id', $id);
-    $stmt->bindParam(':mdp', $mdp);
+                                            // Préparation de la requête préparée
+                                            $sql = "INSERT INTO praticien (nom, prenom, email, specialite, departement, id, mdp) VALUES (:nom, :prenom, :email, :specialite, :departement, :id, :mdp)";
+                                            $stmt = $conn->prepare($sql);
 
-    // Exécution de la requête préparée
-    $stmt->execute();
+                                            // Liaison des variables avec les paramètres de la requête préparée
+                                            $stmt->bindParam(':nom', $nom);
+                                            $stmt->bindParam(':prenom', $prenom);
+                                            $stmt->bindParam(':email', $email);
+                                            $stmt->bindParam(':specialite', $specialite);
+                                            $stmt->bindParam(':departement', $departement);
+                                            $stmt->bindParam(':id', $id);
+                                            $stmt->bindParam(':mdp', $mdp);
 
-    if (!$stmt) {
-        echo "\nPDO::errorInfo():\n";
-        print_r($dbh->errorInfo());
-    }
-    
-    unset($_POST);
-    header('Location: login.php');
+                                            // Exécution de la requête préparée
+                                            $stmt->execute();
+
+                                            if (!$stmt) {
+                                                echo "\nPDO::errorInfo():\n";
+                                                print_r($dbh->errorInfo());
+                                            }
+                                            
+                                            // Vide la variable et redirige l'utilisateur sur la page login.php
+                                            unset($_POST);
+                                            header('Location: login.php');
+
+
+                                        }
+
+                                        else {
+                                            $notcorrespmdp = true;
+                                        }              
+                                    }
+
+                                    else {
+                                        $notspecialite = true;
+                                    }
+                                }
+
+                                else {
+                                    $notdepartement = true;
+                                }
+                            }
+
+                            else {
+                                $notemail = true;
+                            }
+                        }
+
+                        else {
+                            $notprenom = true;
+                        }
+                    }
+
+                    else {
+                        $notnom = true;
+                    }
+                }
+
+                else {
+                    $notmdp2 = true;
+                }
+            }
+
+            else {
+                $notmdp = true;
+            }
+        }
+
+        else {
+            $notid = true;
+        }
     }
 ?>
 
@@ -67,24 +124,70 @@
                 <div class="form-group">
                     <input type="text" name="id" class="form-control" id="id" placeholder="Identifiant">
                 </div>
+                
+                <?php
+                    if (isset($notid)) {
+                        echo "<p class='red'>Vous n'avez pas entré votre identifiant</p>";
+                    }
+                ?>
+
                 <div class="form-group marginThinTop">
                     <input type="password" name="mdp" class="form-control" id="mdp" placeholder="Mot de passe">
-                </div>
+                </div>   
+
+                <?php
+                    if (isset($notmdp)) {
+                        echo "<p class='red'>Vous n'avez pas entré votre mot de passe</p>";
+                    }
+                ?>
+
                 <div class="form-group marginThinTop">
                     <input type="password" name="mdp2" class="form-control" id="mdp2" placeholder="Confirmer votre mot de passe">
                 </div>
+                                
+                <?php
+                    if (isset($notmdp2)) {
+                        echo "<p class='red'>Vous n'avez pas entré la confirmation de votre mot de passe</p>";
+                    }
+                    elseif (isset($notcorrespmdp)) {
+                        echo "<p class='red'>Vos mots de passes ne correspondent pas</p>";
+                        echo "/n mdp 1 :" . $mdp;
+                        echo "/n mdp 2 :" . $mdp2;
+                    }
+                ?>
+
                 <div class="form-group marginThinTop flexRow spaceBetween">
                     <div>
                         <input type="text" name="nom" class="form-control" id="nom" placeholder="Nom">
                     </div>
+
                     <div>
                         <input type="text" name="prenom" class="form-control" id="prenom" placeholder="Prénom">
                     </div>
                 </div>
+                                    
+                <?php
+                    if (isset($notnom)) {
+                        echo "<p class='red'>Vous n'avez pas entré votre nom</p>";
+                    }
+
+                    
+                    if (isset($notprenom)) {
+                        echo "<p class='red'>Vous n'avez pas entré votre prénom</p>";
+                    }
+                ?>
+
                 <div class="form-group marginThinTop">
                     <input type="email" class="form-control" name="email" id="email" placeholder="Email">
                     <div class="validate"></div>
                 </div>
+                                
+                <?php
+                    if (isset($notemail)) {
+                        echo "<p class='red'>Vous n'avez pas entré votre adresse mail</p>";
+                    }
+                ?>
+
                 <div class="form-group marginThinTop">
 
                     <?php
@@ -93,6 +196,13 @@
 
                     <div class="validate"></div>
                 </div>
+                                
+                <?php
+                    if (isset($notdepartement)) {
+                        echo "<p class='red'>Vous n'avez pas choisi de département</p>";
+                    }
+                ?>
+
                 <div class="form-group marginThinTop">
                     <select name="specialite" id="specialite" class="form-select">
                         <option value="">Spécialité</option>
@@ -102,6 +212,13 @@
                     </select>
                     <div class="validate"></div>
                 </div>
+                                
+                <?php
+                    if (isset($notspecialite)) {
+                        echo "<p class='red'>Vous n'avez pas choisi de spécialité</p>";
+                    }
+                ?>
+
                 <div class="text-end marginThinTop">
                     <button type="submit" class="btn btnPrimary">S'inscrire</button>
                 </div>
