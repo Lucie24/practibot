@@ -44,6 +44,9 @@
                                                 echo "\nPDO::errorInfo():\n";
                                                 print_r($dbh->errorInfo());
                                             }
+
+                                            // Stocke des informations en variable de SESSION
+                                            $_SESSION['compteCree'] = "Votre compte a bien été créé";
                                             
                                             // Vide la variable et redirige l'utilisateur sur la page login.php
                                             unset($_POST);
