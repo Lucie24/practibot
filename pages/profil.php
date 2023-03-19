@@ -30,10 +30,11 @@ include "../components/verif_conn.php";
         ?>
 
         <div class="containerTab">
-            <form action="profil.php" method="post" role="form">
+            <form action="profil.php" method="post" role="form" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col">
                         <p>Votre photo de profil</p>
+                        <input type="file" name="avatar">
                     </div>
                     <div class="col">
                         <p>Vos informations personnelles</p>

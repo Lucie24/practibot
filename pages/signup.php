@@ -1,6 +1,4 @@
 <?php
-session_destroy();
-
 include "../components/bdd_connexion.php";
 include "../components/signup_verifs.php";
 ?>

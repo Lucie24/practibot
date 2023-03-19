@@ -3,6 +3,8 @@ session_start();
 
 include "../components/bdd_connexion.php";
 
+$_SESSION['conn'] = false;
+
 // Si la variable POST est remplie
 if (!empty($_POST)) {
     if (!empty($_POST['id'])) {

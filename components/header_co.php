@@ -2,7 +2,7 @@
 <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-        <h1 class="logo me-auto"><a href="../index.php">PractiBot</a></h1>
+        <h1 class="logo me-auto"><a href="praticien.php">PractiBot</a></h1>
 
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
@@ -32,7 +32,7 @@
                     <div class="row align-items-center">
                         <p>Souhaitez-vous vous déconnecter ?</p>
                         <div class="col">
-                            <a href="../index.php" class="btn btnPrimary">Oui</a>
+                            <a href="../components/deconnexion.php" class="btn btnPrimary">Oui</a>
                         </div>
                         <div class="col">
                             <button type="button" class="btn btnSecundary" data-bs-dismiss="modal" aria-label="Close">Non</button>
