@@ -1,3 +1,9 @@
+<?php
+session_start();
+
+include "../components/verif_conn.php";
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 

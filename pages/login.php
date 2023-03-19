@@ -1,44 +1,45 @@
 <?php
-    include "../components/bdd_connexion.php";
+session_start();
 
-    # Si la variable POST est remplie
-    if (!empty($_POST)) {
-        if (!empty($_POST['id'])) {
-            if (!empty($_POST['mdp'])) {
+include "../components/bdd_connexion.php";
 
-                //Récupération des données
+// Si la variable POST est remplie
+if (!empty($_POST)) {
+    if (!empty($_POST['id'])) {
+        if (!empty($_POST['mdp'])) {
+
+            // Récupération des données
+            
+            $id = htmlspecialchars($_POST['id']);
+            $mdp = htmlspecialchars($_POST['mdp']);
+
+            // Préparation de la requête préparée
+
+            $stmt = $conn->prepare("SELECT * FROM praticien WHERE id = :id");
+            $stmt->execute(['id' => $id]);
+
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if (!$user) {
                 
-                $id = htmlspecialchars($_POST['id']);
-                $mdp = htmlspecialchars($_POST['mdp']);
-
-                // Préparation de la requête préparée
-
-                $stmt = $conn->prepare("SELECT * FROM praticien WHERE id = :id");
-                $stmt->execute(['id' => $id]);
-
-                $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-                if (!$user) {
-                    
-                    $errorLogin = "<p class='red marginThinTop'>Identifiant ou mot de passe invalide</p>";
-                }
-                
-                else {
-
-                    if (password_verify($mdp, $user['mdp'])) {
-
-                        header('Location: praticien.php');
-                        exit;
-                    }
-
-                    else {
-                        $errorPass = "<p class='red marginThinTop'>Identifiant ou mot de passe invalide</p>";
-                    }
-                }
+                $errorLogin = "<p class='red marginThinTop'>Identifiant ou mot de passe invalide</p>";
             }
-
+            
             else {
-                $errorEmpty = "<p class='red marginThinTop'>Veuillez remplir tous les champs</p>";
+
+                if (password_verify($mdp, $user['mdp'])) {
+
+                    // On initialise les variables de SESSION
+                    $_SESSION['conn'] = true;
+                    $_SESSION['nom'] = $user['nom'];
+
+                    header('Location: praticien.php');
+                    exit;
+                }
+
+                else {
+                    $errorPass = "<p class='red marginThinTop'>Identifiant ou mot de passe invalide</p>";
+                }
             }
         }
 
@@ -46,6 +47,11 @@
             $errorEmpty = "<p class='red marginThinTop'>Veuillez remplir tous les champs</p>";
         }
     }
+
+    else {
+        $errorEmpty = "<p class='red marginThinTop'>Veuillez remplir tous les champs</p>";
+    }
+}
 ?>
 
 

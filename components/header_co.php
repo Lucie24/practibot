@@ -32,7 +32,7 @@
                     <div class="row align-items-center">
                         <p>Souhaitez-vous vous déconnecter ?</p>
                         <div class="col">
-                            <a href="signup.php" class="btn btnPrimary">Oui</a>
+                            <a href="../index.php" class="btn btnPrimary">Oui</a>
                         </div>
                         <div class="col">
                             <button type="button" class="btn btnSecundary" data-bs-dismiss="modal" aria-label="Close">Non</button>
