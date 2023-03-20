@@ -205,7 +205,7 @@
                 <div class="row">
 
                     <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-                        <a href="pages/form.php">
+                        <a href="pages/form.php?form=1">
                             <div class="black icon-box">
                                 <div class="icon"><i class="fas fa-pills"></i></div>
                                 <h4>Médecine Générale</h4>
@@ -215,7 +215,7 @@
                     </div>
 
                     <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-                        <a href="pages/form.php">                        
+                        <a href="pages/form.php?form=2">                        
                             <div class="black icon-box">
                                 <div class="icon"><i class="fas fa-hospital-user"></i></div>
                                 <h4>Gériatrie</h4>
@@ -225,7 +225,7 @@
                     </div>
 
                     <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                        <a href="pages/form.php">
+                        <a href="pages/form.php?form=3">
                             <div class="black icon-box">
                                 <div class="icon"><i class="fas fa-heartbeat"></i></div>
                                 <h4>Cardiologie</h4>

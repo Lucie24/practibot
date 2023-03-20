@@ -34,6 +34,7 @@ if (!empty($_POST)) {
                     // On initialise les variables de SESSION
                     $_SESSION['conn'] = true;
                     $_SESSION['nom'] = $user['nom'];
+                    $_SESSION['id_praticien'] = $user['id_praticien'];
 
                     header('Location: praticien.php');
                     exit;

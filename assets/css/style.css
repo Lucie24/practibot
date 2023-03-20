@@ -1229,8 +1229,13 @@ section {
 # Tableau
 --------------------------------------------------------------*/
 
-table {
+.tabPatient {
   margin : 0 auto;
+}
+
+.tabForm {
+  margin : 0;
+  width : 100%;
 }
 
 td {

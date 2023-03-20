@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mar 07 Mars 2023 à 10:26
+-- Généré le :  Lun 20 Mars 2023 à 15:18
 -- Version du serveur :  5.7.11
 -- Version de PHP :  5.6.18
 
@@ -91,15 +91,18 @@ CREATE TABLE `praticien` (
   `specialite` int(1) NOT NULL,
   `departement` int(3) NOT NULL,
   `id` varchar(50) NOT NULL,
-  `mdp` varchar(50) NOT NULL
+  `mdp` varchar(255) NOT NULL,
+  `date_insc` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `praticien`
 --
 
-INSERT INTO `praticien` (`id_praticien`, `nom`, `prenom`, `email`, `specialite`, `departement`, `id`, `mdp`) VALUES
-(1, 'nom', 'prenom', 'email@gmail.com', 1, 15, 'login', 'mdp');
+INSERT INTO `praticien` (`id_praticien`, `nom`, `prenom`, `email`, `specialite`, `departement`, `id`, `mdp`, `date_insc`) VALUES
+(1, 'nom', 'prenom', 'email@gmail.com', 1, 15, 'login', 'mdp', ''),
+(2, 'Dumas', 'Lucie', 'Luciedumas@gmail.com', 1, 24, 'ldumas', 'mdp', ''),
+(3, 'roger', 'roger', 'rogerroger@gmail.com', 2, 75, 'log', '$2y$10$Vdwu3h2XdAzIQseG49qM4e7Nq1fMleQZ6341pyDkf1qyqhUsG5/cW', '');
 
 --
 -- Index pour les tables exportées
@@ -130,7 +133,7 @@ ALTER TABLE `patient`
 -- AUTO_INCREMENT pour la table `praticien`
 --
 ALTER TABLE `praticien`
-  MODIFY `id_praticien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_praticien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -2,7 +2,7 @@
     include "../components/bdd_connexion.php";
 ?>
 
-<table>
+<table class="tabPatient">
 
     <tr>
         <th>Nom</th>

@@ -35,6 +35,7 @@
                                         $departement = htmlspecialchars($_POST['departement']);
                                         $id = htmlspecialchars($_POST['id']);
                                         $mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
+                                        $timestamp = time();
 
                                         // Préparation de la requête préparée permettant de tester si le nom d'utilisateur est déjà utilisé
                                         $stmt = $conn->prepare("SELECT id FROM praticien WHERE id = :id");
@@ -58,7 +59,7 @@
                                                 if ($_POST['mdp'] == $_POST['mdp2']){
 
                                                     // Préparation de la requête préparée
-                                                    $sql = "INSERT INTO praticien (nom, prenom, email, specialite, departement, id, mdp) VALUES (:nom, :prenom, :email, :specialite, :departement, :id, :mdp)";
+                                                    $sql = "INSERT INTO praticien (nom, prenom, email, specialite, departement, id, mdp, date_insc) VALUES (:nom, :prenom, :email, :specialite, :departement, :id, :mdp, :date_insc)";
                                                     $stmt = $conn->prepare($sql);
         
                                                     // Liaison des variables avec les paramètres de la requête préparée
@@ -69,6 +70,7 @@
                                                     $stmt->bindParam(':departement', $departement);
                                                     $stmt->bindParam(':id', $id);
                                                     $stmt->bindParam(':mdp', $mdp);
+                                                    $stmt->bindParam(':date_insc', $timestamp);
         
                                                     // Exécution de la requête préparée
                                                     $stmt->execute();
