@@ -18,7 +18,9 @@ if (!empty($_POST)) {
             // Préparation de la requête préparée
 
             $stmt = $conn->prepare("SELECT * FROM praticien WHERE id = :id");
-            $stmt->execute(['id' => $id]);
+            $stmt->bindParam(':id', $id);
+            
+            $stmt->execute();
 
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -65,7 +67,7 @@ if (!empty($_POST)) {
     include '../components/head.html';
 ?>
 
-<body class="section-bg">
+<body class="section-bg  min-vh-100 d-flex flex-column flex-sm-column flex-md-column flex-lg-column flex-xl-column flex-nowrap flex-sm-nowrap flex-md-nowrap flex-lg-nowrap flex-xl-nowrap justify-content-between justify-content-sm-between justify-content-md-between justify-content-lg-between justify-content-xl-between">
 
 <?php
     include '../components/header.php';

@@ -7,7 +7,7 @@
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
                 <li><a class="nav-link scrollto" href="../index.php">Accueil</a></li>
-                <li><a class="nav-link scrollto" href="form.php">Se diagnostiquer</a></li>
+                <li><a class="nav-link scrollto" href="form.php?form=1">Se diagnostiquer</a></li>
                 <li>
                     <button type="button" class="btn btnPrimary" data-bs-toggle="modal" data-bs-target="#popup">
                         Se connecter

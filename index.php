@@ -39,7 +39,7 @@
     ======================================================== -->
 </head>
 
-<body>
+<body class=" min-vh-100 d-flex flex-column flex-sm-column flex-md-column flex-lg-column flex-xl-column flex-nowrap flex-sm-nowrap flex-md-nowrap flex-lg-nowrap flex-xl-nowrap justify-content-between justify-content-sm-between justify-content-md-between justify-content-lg-between justify-content-xl-between">
 
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top">
@@ -50,7 +50,7 @@
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
                     <li><a class="nav-link scrollto" href="index.php">Accueil</a></li>
-                    <li><a class="nav-link scrollto" href="pages/form.php">Se diagnostiquer</a></li>
+                    <li><a class="nav-link scrollto" href="pages/form.php?form=1">Se diagnostiquer</a></li>
                     <li>
                         <button type="button" class="btn btnPrimary" data-bs-toggle="modal" data-bs-target="#form">
                             Se connecter
@@ -160,7 +160,7 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="count-box">
                             <i class="fas fa-user-md"></i>
-                            <span data-purecounter-start="0" data-purecounter-end="128" data-purecounter-duration="1"
+                            <span data-purecounter-start="0" data-purecounter-end="845" data-purecounter-duration="1"
                                 class="purecounter"></span>
                             <p>Professionnels du médical partenaires</p>
                         </div>
@@ -169,7 +169,7 @@
                     <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
                         <div class="count-box">
                             <i class="far fa-hospital"></i>
-                            <span data-purecounter-start="0" data-purecounter-end="68" data-purecounter-duration="1"
+                            <span data-purecounter-start="0" data-purecounter-end="100" data-purecounter-duration="1"
                                 class="purecounter"></span>
                             <p>Départements partenaires</p>
                         </div>

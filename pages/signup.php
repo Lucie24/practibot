@@ -10,7 +10,7 @@ include "../components/signup_verifs.php";
     include '../components/head.html';
 ?>
 
-<body class="section-bg">
+<body class="section-bg  min-vh-100 d-flex flex-column flex-sm-column flex-md-column flex-lg-column flex-xl-column flex-nowrap flex-sm-nowrap flex-md-nowrap flex-lg-nowrap flex-xl-nowrap justify-content-between justify-content-sm-between justify-content-md-between justify-content-lg-between justify-content-xl-between">
 
 <?php
     include '../components/header.php';

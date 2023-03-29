@@ -41,10 +41,9 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
             <form action="profil.php" method="post" role="form" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col">
-                        <p>Votre photo de profil</p>
-                        <input type="file" name="avatar">
-                        
-
+                        <label class="labelFile">Votre photo de profil</label>
+                        <input type="file" class="file" name="avatar">
+    
                     </div>
                     <div class="col">
                         <p>Vos informations personnelles</p>
