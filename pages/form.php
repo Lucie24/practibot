@@ -1,6 +1,7 @@
 <?php
+  session_start();
   include "../components/bdd_connexion.php";
-  
+  include "../components/form_verifs.php";
 
   #Récupération du formulaire choisi
   $form = $_GET['form'];
@@ -13,12 +14,11 @@
   include '../components/head.html';
 ?>
 
-<body class="section-bg  min-vh-100 d-flex flex-column flex-sm-column flex-md-column flex-lg-column flex-xl-column flex-nowrap flex-sm-nowrap flex-md-nowrap flex-lg-nowrap flex-xl-nowrap justify-content-between justify-content-sm-between justify-content-md-between justify-content-lg-between justify-content-xl-between">
+<body class="section-bg min-vh-100 d-flex flex-column flex-sm-column flex-md-column flex-lg-column flex-xl-column flex-nowrap flex-sm-nowrap flex-md-nowrap flex-lg-nowrap flex-xl-nowrap justify-content-between justify-content-sm-between justify-content-md-between justify-content-lg-between justify-content-xl-between">
 
 <?php
   include '../components/header.php';
 ?>
-
 
   <main id="appointment" class="marginFatTop marginThinBottom">
     <div class="container">

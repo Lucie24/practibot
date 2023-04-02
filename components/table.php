@@ -5,6 +5,7 @@
 <table class="tabPatient">
 
     <tr>
+        <th class='hiddenDiv'></th>
         <th>Nom</th>
         <th>Prénom</th>
         <th>Age</th>
@@ -38,6 +39,8 @@
                 $i = 0;
             }
             
+            
+            echo "<td><a href='../components/del_line.php?id=" . $row['id_patient'] . "'><img src='../assets/img/trash.png' width='25%' height='25%'></a></td>";
             echo "<td>" . $row['nom'] . '</td>';
             echo "<td>" . $row['prenom'] . '</td>';
             echo "<td>" . $row['age'] . '</td>';
@@ -57,6 +60,7 @@
             else {
                 echo "<td>Non enregistré</td>";
             }
+
         }
     ?>
 </table>

@@ -73,7 +73,7 @@ if (!empty($_POST)) {
     include '../components/header.php';
 ?>
 
-    <main class="marginFatTop backgroundCover">
+    <main class="backgroundCover">
         
         <!-- Formulaire de connexion -->
         <form action="login.php" method="post" role="form">

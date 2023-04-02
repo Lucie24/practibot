@@ -4,12 +4,33 @@ session_start();
 include "../components/verif_conn.php";
 include "../components/bdd_connexion.php";
 
-// Préparation de la requête préparée
-
+// Préparation de la requête préparée pour afficher les données en placeholder
+// Mofifier la requête pour la link avec le tableau spécialité
 $stmt = $conn->prepare("SELECT * FROM praticien WHERE id_praticien = :id_praticien");
-$stmt->execute(['id_praticien' => $_SESSION['id_praticien']]);
+$stmt->bindParam(':id_praticien', $_SESSION['id_praticien']);
+
+$stmt->execute();
 
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!empty($_POST)){
+    // Si le bouton de modification de profil est cliqué
+
+    // Récupération des données 
+    $newSurname = htmlspecialchars($_POST['newNom']);
+    $newPrenom = htmlspecialchars($_POST['newPrenom']);
+    $newEmail = htmlspecialchars($_POST['newEmail']);
+    $newSpecialite = htmlspecialchars($_POST['newSpecialite']);
+    $newDepartement = htmlspecialchars($_POST['departement']);
+    $newMdp = password_hash($_POST['newMdp'], PASSWORD_DEFAULT);
+
+    // Requête pour modifier les données personnelles
+    $stmt = $conn->prepare("SELECT * FROM praticien WHERE id_praticien = :id_praticien");
+    $stmt->bindParam(':id_praticien', $_SESSION['id_praticien']);
+
+    $stmt->execute();
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +59,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
         ?>
 
         <div class="containerTab">
-            <form action="profil.php" method="post" role="form" enctype="multipart/form-data">
+            <form class="paddingContent" action="profil.php" method="post" role="form" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col">
                         <label class="labelFile">Votre photo de profil</label>
@@ -48,17 +69,20 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                     <div class="col">
                         <p>Vos informations personnelles</p>
                         <div class="form-group">
-                            <input type="text" name="nom" class="form-control" id="nom" placeholder="Nom">
+                            <input type="text" name="newNom" class="form-control" id="nom" placeholder="Nom" value="<?php echo $user['nom']?>">
                         </div>
                         <div class="form-group marginThinTop">
-                            <input type="password" name="prenom" class="form-control" id="prenom" placeholder="Prénom">
+                            <input type="text" name="newPrenom" class="form-control" id="prenom" placeholder="Prénom" value="<?php echo $user['prenom']?>">
                         </div>
                         <div class="form-group marginThinTop">
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                            <input type="email" class="form-control" name="newEmail" id="email" placeholder="Email" value="<?php echo $user['email']?>">
                         </div>
                         <div class="form-group marginThinTop">
-                            <select name="specialite" id="specialite" class="form-select">
-                                <option value="">Spécialité</option>
+                            <input type="password" name="newMdp" class="form-control" id="mdp" placeholder="Nouveau mot de passe">
+                        </div>
+                        <div class="form-group marginThinTop">
+                            <select name="newSpecialite" id="specialite" class="form-select">
+                                <option value=""><?php echo $specialite?></option>
                                 <option value="1">Généraliste</option>
                                 <option value="2">Gériatre</option>
                                 <option value="3">Cardiologue</option>

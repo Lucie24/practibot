@@ -16,7 +16,7 @@ include "../components/signup_verifs.php";
     include '../components/header.php';
 ?>
 
-    <main class="marginFatTop">
+    <main>
         
         <!-- Formulaire de connexion -->
         <form action="signup.php" method="post" role="form">
@@ -47,6 +47,10 @@ include "../components/signup_verifs.php";
                     if (isset($notmdp)) {
                         echo "<p class='red'>Vous n'avez pas entré votre mot de passe</p>";
                     }
+
+                    if (isset($wrongmdp)) {
+                        echo "<p class='red'>Votre mot de passe doit contient au moins 12 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial";
+                    }
                 ?>
 
                 <div class="form-group marginThinTop">
@@ -70,25 +74,22 @@ include "../components/signup_verifs.php";
                     <div>
                         <input type="text" name="prenom" class="form-control" id="prenom" placeholder="Prénom">
                     </div>
-                </div>
-                                    
-                <?php
-                    if (isset($notnom)) {
-                        echo "<p class='red'>Vous n'avez pas entré votre nom</p>";
-                    }
+                    <?php
+                        if (isset($notnom)) {
+                            echo "<p class='red'>Vous n'avez pas entré votre nom</p>";
+                        }
 
-                    
-                    if (isset($notprenom)) {
-                        echo "<p class='red'>Vous n'avez pas entré votre prénom</p>";
-                    }
-                ?>
+                        
+                        if (isset($notprenom)) {
+                            echo "<p class='red'>Vous n'avez pas entré votre prénom</p>";
+                        }
+                    ?>
+                </div>
 
                 <div class="form-group marginThinTop">
                     <input type="email" class="form-control" name="email" id="email" placeholder="Email">
                     <div class="validate"></div>
-                </div>
-                                
-                <?php
+                    <?php
                     if (isset($notemail)) {
                         echo "<p class='red'>Vous n'avez pas entré votre adresse mail</p>";
                     }
@@ -96,7 +97,12 @@ include "../components/signup_verifs.php";
                     if (isset($emailexists)) {
                         echo "<p class='red'>Cette adresse mail est déjà utilisée</p>";
                     }
+
+                    if (isset($wrongmail)) {
+                        echo "<p class='red'>Vous devez entrer une adresse email valide";
+                    }
                 ?>
+                </div>
 
                 <div class="form-group marginThinTop">
 
@@ -105,13 +111,16 @@ include "../components/signup_verifs.php";
                     ?>
 
                     <div class="validate"></div>
+                    <?php
+                        if (isset($notdepartement)) {
+                            echo "<p class='red'>Vous n'avez pas choisi de département</p>";
+                        }
+
+                        if (isset($wrongdepartement)) {
+                            echo "<p class='red'>Vous devez choisir un département dans la liste ci-dessus";
+                        }
+                    ?>
                 </div>
-                                
-                <?php
-                    if (isset($notdepartement)) {
-                        echo "<p class='red'>Vous n'avez pas choisi de département</p>";
-                    }
-                ?>
 
                 <div class="form-group marginThinTop">
                     <select name="specialite" id="specialite" class="form-select">
@@ -121,14 +130,17 @@ include "../components/signup_verifs.php";
                         <option value="3">Cardiologue</option>
                     </select>
                     <div class="validate"></div>
-                </div>
-                                
-                <?php
-                    if (isset($notspecialite)) {
-                        echo "<p class='red'>Vous n'avez pas choisi de spécialité</p>";
-                    }
-                ?>
 
+                    <?php
+                        if (isset($notspecialite)) {
+                            echo "<p class='red'>Vous n'avez pas choisi de spécialité</p>";
+                        }
+
+                        if (isset($wrongspecialite)) {
+                            echo "<p class='red'>Vous devez choisir une spécialité dans la liste ci-dessus";
+                        }
+                    ?>
+                </div>
                 <div class="text-end marginThinTop">
                     <button type="submit" class="btn btnPrimary">S'inscrire</button>
                 </div>

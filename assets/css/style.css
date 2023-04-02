@@ -19,8 +19,6 @@ footer {
   bottom: 0;
   /* on le colle en bas */
   width: 100%;
-  position: sticky;
-
 }
 
 a {
@@ -1258,12 +1256,11 @@ td {
   margin-left: 10%;
   margin-right: 10%;
   margin-bottom: 2.5%;
-  padding-left: 1%;
-  padding-right: 1%;
   padding-top: 1%;
-  padding-bottom: 1%;
   border-radius: 2rem;
-
+  overflow: scroll!important;
+  width: auto;
+  white-space: nowrap;
 }
 
 /*--------------------------------------------------------------
@@ -1373,6 +1370,11 @@ input[type="checkbox"]:not(:checked)+label::after {
   margin-bottom: 2rem;
 }
 
+.paddingContent {
+  padding-left: 1%;
+  padding-right: 1%;
+}
+
 .flexRow {
   display: flex;
   flex-direction: row;
@@ -1440,4 +1442,12 @@ input[type="checkbox"]:not(:checked)+label::after {
 
 .bgGrey {
   background-color: #bfdcf7;
+}
+
+.hiddenDiv {
+  visibility: hidden;
+}
+
+.hiddenDiv:hover {
+  visibility: visible;
 }
