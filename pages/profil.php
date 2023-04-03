@@ -13,23 +13,36 @@ $stmt->execute();
 
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if (!empty($_POST)){
-    // Si le bouton de modification de profil est cliqué
+if (isset($user)) {
 
-    // Récupération des données 
-    $newSurname = htmlspecialchars($_POST['newNom']);
-    $newPrenom = htmlspecialchars($_POST['newPrenom']);
-    $newEmail = htmlspecialchars($_POST['newEmail']);
-    $newSpecialite = htmlspecialchars($_POST['newSpecialite']);
-    $newDepartement = htmlspecialchars($_POST['departement']);
-    $newMdp = password_hash($_POST['newMdp'], PASSWORD_DEFAULT);
+    // Transformation du timestamp en jours
+    date_default_timezone_set('UTC');
 
-    // Requête pour modifier les données personnelles
-    $stmt = $conn->prepare("SELECT * FROM praticien WHERE id_praticien = :id_praticien");
-    $stmt->bindParam(':id_praticien', $_SESSION['id_praticien']);
+    switch ($user['specialite']) {
+        case 1 :
+            $specialite = "Généraliste"; 
+            break;
+        case 2 :
+            $specialite = "Gériatre"; 
+            break;
+        case 3 :
+            $specialite = "Cardiologue"; 
+            break;
+    }
 
-    $stmt->execute();
-
+    if (!empty($_POST)) {
+        $date = date('d/m/Y', $user['date_insc']);
+        $_SESSION['nom'] = $_POST['newNom'] ;
+        $_SESSION['prenom'] = $_POST['newPrenom'] ;
+        $_SESSION['email'] = $_POST['newEmail'] ;
+        $_SESSION['specialite'] = $_POST['newSpecialite'] ;
+        $_SESSION['departement'] = $_POST['departement'] ;
+        $_SESSION['mdp'] = $_POST['newMdp'] ;
+        $_SESSION['id'] = $_POST['newId'] ;
+        
+        header('Location: ../components/modif_profil.php');
+    }
+    $date = date('d/m/Y', $user['date_insc']);
 }
 ?>
 
@@ -58,27 +71,33 @@ if (!empty($_POST)){
         #Faire la récupération des infos dans la base de données pour les afficher en tant que placeholder dans les input
         ?>
 
-        <div class="containerTab">
+        <div class="containerTab marginContent">
             <form class="paddingContent" action="profil.php" method="post" role="form" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col">
-                        <label class="labelFile">Votre photo de profil</label>
-                        <input type="file" class="file" name="avatar">
-    
-                    </div>
-                    <div class="col">
                         <p>Vos informations personnelles</p>
                         <div class="form-group">
-                            <input type="text" name="newNom" class="form-control" id="nom" placeholder="Nom" value="<?php echo $user['nom']?>">
+                            <label for="nom">Nom :</label>
+                            <input type="text" name="newNom" class="form-control" id="nom" placeholder="<?php echo $user['nom']?>">
                         </div>
                         <div class="form-group marginThinTop">
-                            <input type="text" name="newPrenom" class="form-control" id="prenom" placeholder="Prénom" value="<?php echo $user['prenom']?>">
+                            <label for="nom">Nom :</label>
+                            <input type="text" name="newPrenom" class="form-control" id="prenom" placeholder="<?php echo $user['prenom']?>">
                         </div>
                         <div class="form-group marginThinTop">
-                            <input type="email" class="form-control" name="newEmail" id="email" placeholder="Email" value="<?php echo $user['email']?>">
+                            <label for="nom">Nom :</label>
+                            <input type="email" class="form-control" name="newEmail" id="email" placeholder="<?php echo $user['email']?>">
                         </div>
                         <div class="form-group marginThinTop">
+                            <label for="nom">Nom :</label>
+                            <input type="text" name="newId" class="form-control" id="id" placeholder="<?php echo $user['id']?>">
+                        </div>
+                        <div class="form-group marginThinTop">
+                            <label for="nom">Nom :</label>
                             <input type="password" name="newMdp" class="form-control" id="mdp" placeholder="Nouveau mot de passe">
+                        </div>
+                        <div class="form-group marginThinTop">
+                            <input type="password" name="newMdp2" class="form-control" id="mdp2" placeholder="Confirmation du mot de passe">
                         </div>
                         <div class="form-group marginThinTop">
                             <select name="newSpecialite" id="specialite" class="form-select">
@@ -105,7 +124,7 @@ if (!empty($_POST)){
                     </div>
                     <div class="col">
                         <?php
-                            echo '<p class="textLeft">Votre compte a été créé le ' . $user['date_insc'] . '</p>';
+                            echo '<p class="textLeft">Votre compte a été créé le ' . $date . '</p>';
                         ?>
                     </div>
                 </div>

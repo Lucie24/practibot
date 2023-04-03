@@ -40,7 +40,7 @@
             }
             
             
-            echo "<td><a href='../components/del_line.php?id=" . $row['id_patient'] . "'><img src='../assets/img/trash.png' width='25%' height='25%'></a></td>";
+            echo "<td><a href='../components/del_line.php?id=" . $row['id_patient'] . "'><img src='../assets/img/trash.png' width='25rem' height='auto'></a></td>";
             echo "<td>" . $row['nom'] . '</td>';
             echo "<td>" . $row['prenom'] . '</td>';
             echo "<td>" . $row['age'] . '</td>';

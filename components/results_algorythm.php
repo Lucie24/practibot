@@ -7,7 +7,19 @@ if (!empty($_POST)) {
     switch ($form) {
 
         case 1:
-            
+            # Définition du tableau de maladies 
+
+            $maladies = array(
+                "Pneumonie" => 0,
+                "Grippe" => 0,
+                "Appendicite" => 0,
+                "Gastro-entérite" => 0,
+                "Anémie" => 0,
+                "Migraine" => 0,
+                "Bronchite" => 0,
+                ""
+            );
+
             # Changement de variables pour affecter les maladies 
             $i = 0;
             while ($i < 13) {
@@ -15,55 +27,55 @@ if (!empty($_POST)) {
                     if ($_POST[$i] == "on") {
                         switch ($_POST[$i]) {
                             case 1 :
-                                $douleurAbdo = "on";
+                                $_SESSION['douleurAbdo'] = "on";
                                 break;
                             
                             case 2 :
-                                $douleurArti = "on";
+                                $_SESSION['douleurArti'] = "on";
                                 break;
                             
                             case 3 :
-                                $douleurGorge = "on";
+                                $_SESSION['douleurGorge'] = "on";
                                 break;
                             
                             case 4 :
-                                $douleurDos = "on";
+                                $_SESSION['douleurDos'] = "on";
                                 break;
 
                             case 5 :
-                                $eruptionsCutanees = "on";
+                                $_SESSION['eruptionsCutanees'] = "on";
                                 break;
 
                             case 6 :
-                                $essoufflement = "on";
+                                $_SESSION['essoufflement'] = "on";
                                 break;
                             
                             case 7 :
-                                $fatigue = "on";
+                                $_SESSION['fatigue'] = "on";
                                 break;
                             
                             case 8 :
-                                $fièvre = "on";
+                                $_SESSION['fièvre'] = "on";
                                 break;
 
                             case 9 :
-                                $mauxTete = "on";
+                                $_SESSION['mauxTete'] = "on";
                                 break;
 
                             case 10 :
-                                $nausees = "on";
+                                $_SESSION['nausees'] = "on";
                                 break;
                             
                             case 11 :
-                                $pertePoids = "on";
+                                $_SESSION['pertePoids'] = "on";
                                 break;
                             
                             case 12 :
-                                $toux = "on";
+                                $_SESSION['toux'] = "on";
                                 break;
 
                             case 13 :
-                                $troubleHumeur = "on";
+                                $_SESSION['troubleHumeur'] = "on";
                                 break;
                         }
                     }

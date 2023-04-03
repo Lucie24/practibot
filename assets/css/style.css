@@ -1370,9 +1370,14 @@ input[type="checkbox"]:not(:checked)+label::after {
   margin-bottom: 2rem;
 }
 
+.marginContent {
+  margin-right: 15%;
+  margin-left: 15%;
+}
+
 .paddingContent {
-  padding-left: 1%;
-  padding-right: 1%;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 .flexRow {
