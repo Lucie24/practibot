@@ -29,50 +29,58 @@ if (!empty($_POST)) {
 
                                 if (preg_match('/^\d+$/', $_POST['age'])) {
 
-                                    // Si la variable POST contient la valeur de age
-                                    if (!empty($_POST['phone'])) {
+                                    // Si la variable POST contient la valeur de telephone
+                                    if (!empty($_POST['departement'])) {
 
-                                        // Si c'est un numéro de téléphone français
-                                        if (preg_match('/^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/', $_POST['phone'])) {
+                                        if (preg_match('/^\d+$/', $_POST['departement'])) {
 
-                                            // Si la variable POST contient la valeur de telephone
-                                            if (!empty($_POST['departement'])) {
+                                            // Récupération des données pour les transmettre en session afin 
+                                            // qu'elles soient réutilisables sur d'autres pages
+                                            $_SESSION['surname'] = htmlspecialchars($_POST['surname']);
+                                            $_SESSION['name'] = htmlspecialchars($_POST['name']);
+                                            $_SESSION['email'] = htmlspecialchars($_POST['email']);
+                                            $_SESSION['age'] = htmlspecialchars($_POST['age']);
+                                            $_SESSION['departement'] = htmlspecialchars($_POST['departement']);
+                                            
+                                            
 
-                                                if (preg_match('/^\d+$/', $_POST['departement'])) {
-
-                                                    // Récupération des données pour les transmettre en session afin 
-                                                    // qu'elles soient réutilisables sur d'autres pages
-                                                    $_SESSION['surname'] = htmlspecialchars($_POST['surname']);
-                                                    $_SESSION['name'] = htmlspecialchars($_POST['name']);
-                                                    $_SESSION['email'] = htmlspecialchars($_POST['email']);
-                                                    $_SESSION['age'] = htmlspecialchars($_POST['age']);
+                                            // Si la variable POST contient la valeur de age
+                                            if (isset($_POST['phone'])) {
+                                                
+                                                // Si c'est un numéro de téléphone français
+                                                if (preg_match('/^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/', $_POST['phone'])) {
                                                     $_SESSION['phone'] = htmlspecialchars($_POST['phone']);
-                                                    $_SESSION['departement'] = htmlspecialchars($_POST['departement']);
-                                                    
-                                                    if (isset($_POST['doctor'])) {
-                                                        $_SESSION['doctor'] = htmlspecialchars($_POST['doctor']);
-                                                    }
-
-                                                    if (isset($_POST['message'])) {
-                                                        $_SESSION['message'] = htmlspecialchars($_POST['message']);
-                                                    }
-
-                                                    include '../components/results_algorythm.php';
                                                 }
                                                 else {
-                                                    $wrongdepartement = true;
+                                                    $wrongphone = true;
                                                 }
                                             } 
                                             else {
-                                                $notdepartement = true;
+                                                $_SESSION['phone'] = "";
                                             }
+
+                                            if (isset($_POST['doctor'])) {
+                                                $_SESSION['doctor'] = htmlspecialchars($_POST['doctor']);
+                                            }
+                                            else {
+                                                $_SESSION['doctor'] = "";
+                                            }
+
+                                            if (isset($_POST['message'])) {
+                                                $_SESSION['message'] = htmlspecialchars($_POST['message']);
+                                            }
+                                            else {
+                                                $_SESSION['message'] = "";
+                                            }
+
+                                            include '../components/results_algorythm.php';
                                         }
                                         else {
-                                            $wrongphone = true;
+                                            $wrongdepartement = true;
                                         }
                                     } 
                                     else {
-                                        $notphone = true;
+                                        $notdepartement = true;
                                     }
                                 }
                                 else {

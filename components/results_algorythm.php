@@ -190,28 +190,9 @@ if (!empty($_POST)) {
     $max_value = max(array_values($maladies));
     $_SESSION['maladie'] = array_search($max_value, $maladies);
     $_SESSION['symptome'] = $symptome;
-
-    // Préparation de la requête préparée
-    $sql = "INSERT INTO patient (nom, prenom, age, mail, tel, departement, medecin_traitant, maladie, symptome, messageprat) VALUES (:nom, :prenom, :age, :mail, :tel, :departement, :medecin_traitant, :maladie, :symptome, :messageprat)";
-    $stmt = $conn->prepare($sql);
-
-    // Liaison des variables avec les paramètres de la requête préparée
-    $stmt->bindParam(':nom', $nom);
-    $stmt->bindParam(':prenom', $prenom);
-    $stmt->bindParam(':age', $prenom);
-    $stmt->bindParam(':mail', $email);
-    $stmt->bindParam(':tel', $specialite);
-    $stmt->bindParam(':medecin_traitant', $departement);
-    $stmt->bindParam(':maladie', $_SESSION['maladie']);
-    $stmt->bindParam(':symptome', $_SESSION['symptome']);
-    $stmt->bindParam(':messageprat', $timestamp);
-
-    // Exécution de la requête préparée
-    $stmt->execute();
     
     // Vide la variable et redirige l'utilisateur sur la page login.php
-    unset($_POST);
-    header('Location: login.php');    
+    header('Location: results.php');    
 }
 
 ?>

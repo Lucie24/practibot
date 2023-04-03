@@ -15,6 +15,7 @@
         <th>Médecin traitant</th>
         <th>Symptômes</th>
         <th>Résultats</th>
+        <th>Message</th>
     </tr>
 
     <?php
@@ -56,6 +57,16 @@
 
             if (!empty ($row['medecin_traitant'])) {
                 echo "<td>" . $row['medecin_traitant'] . '</td>';
+            }
+            else {
+                echo "<td>Non enregistré</td>";
+            }
+
+            echo "<td>" . $row['symptome'] . '</td>';
+            echo "<td>" . $row['maladie'] . '</td>';
+
+            if (!empty ($row['messageprat'])) {
+                echo "<td>" . $row['messageprat'] . '</td>';
             }
             else {
                 echo "<td>Non enregistré</td>";

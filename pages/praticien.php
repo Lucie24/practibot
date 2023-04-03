@@ -2,6 +2,16 @@
 session_start();
 
 include "../components/verif_conn.php";
+include "../components/bdd_connexion.php";
+
+// Préparation de la requête préparée pour afficher les données en placeholder
+// Mofifier la requête pour la link avec le tableau spécialité
+$stmt = $conn->prepare("SELECT * FROM praticien WHERE id_praticien = :id_praticien");
+$stmt->bindParam(':id_praticien', $_SESSION['id_praticien']);
+
+$stmt->execute();
+
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +32,7 @@ include "../components/verif_conn.php";
     <main class="marginFatTop">
 
         <div class="section-title">
-            <h2>Bienvenue sur l'espace praticien !</h2>
+            <h2>Bienvenue sur votre espace praticien Dr <?php echo $user['nom']; ?></h2>
         </div>
 
         <div class="containerTab">

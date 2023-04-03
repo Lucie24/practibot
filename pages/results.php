@@ -11,8 +11,10 @@ session_start();
 
 <body class="section-bg min-vh-100 d-flex flex-column flex-sm-column flex-md-column flex-lg-column flex-xl-column flex-nowrap flex-sm-nowrap flex-md-nowrap flex-lg-nowrap flex-xl-nowrap justify-content-between justify-content-sm-between justify-content-md-between justify-content-lg-between justify-content-xl-between">
 
-  <?php
-  ?>
+<?php
+    #Header
+    include '../components/header_co.php';
+?>
 
   <main class="marginThinBottom">  
           <div class="containerDiv">
@@ -21,12 +23,12 @@ session_start();
                   <h2>Résultats</h2>
               </div>
 
-              <p>Voici le résultat de ce test : <strong>Maladie X</strong></p>
+              <p>Vous êtes peut-être atteint(e) de la maladie suivante : <strong><?php echo $_SESSION['maladie']; ?></strong></p>
 
               <p>Voulez vous communiquer vos résultats aux praticiens de la plateforme ?</p>
 
               <div class="flexRow spaceAround">
-                      <a href="../index.php" class="btn btnPrimary">Oui</a>
+                      <a href="../components/insert_bdd.php" class="btn btnPrimary">Oui</a>
                       <a href="../index.php" class="btn btnPrimary">Non</a>
               </div>
           </div>
