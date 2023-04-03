@@ -99,7 +99,7 @@ CREATE TABLE `praticien` (
 
 INSERT INTO `praticien` (`id_praticien`, `nom`, `prenom`, `email`, `specialite`, `departement`, `id`, `mdp`, `date_insc`) VALUES
 (1, 'nom', 'prenom', 'email@gmail.com', 1, 15, 'login', 'mdp', ''),
-(2, 'Dumas', 'Lucie', 'Luciedumas@gmail.com', 1, 24, 'ldumas', 'mdp', ''),
+(2, 'Dumas', 'Lucie', 'Luciedumas@gmail.com', 1, 24, 'lala', 'mdp', ''),
 (3, 'roger', 'roger', 'rogerroger@gmail.com', 2, 75, 'log', '$2y$10$Vdwu3h2XdAzIQseG49qM4e7Nq1fMleQZ6341pyDkf1qyqhUsG5/cW', ''),
 (4, 'lucie', 'lucie', 'lucielucie@gmail.com', 1, 14, 'lucie', '$2y$10$E11qnpHm4HFJM06kteSOm.1UXr4i6gQQHXZIlu7.IFwMZj0.CmOua', '1679986353');
 

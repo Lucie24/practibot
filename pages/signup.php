@@ -83,6 +83,15 @@ include "../components/signup_verifs.php";
                         if (isset($notprenom)) {
                             echo "<p class='red'>Vous n'avez pas entré votre prénom</p>";
                         }
+
+                        if (isset($wrongnom)) {
+                            echo "<p class='red'>Votre nom ne doit comporter que des lettres</p>";
+                        }
+
+                        
+                        if (isset($wrongprenom)) {
+                            echo "<p class='red'>Votre prénom ne doit comporter que des lettres</p>";
+                        }
                     ?>
                 </div>
 

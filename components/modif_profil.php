@@ -36,16 +36,6 @@ if (!empty($_SESSION['email'])) {
     $stmt->execute();
 }
 
-if (!empty($_SESSION['id'])) {
-    $newid = htmlspecialchars($_SESSION['id']);
-
-    // Requête pour modifier les données personnelles
-    $stmt = $conn->prepare("UPDATE praticien SET mdp = '$newid' WHERE id_praticien = :id_praticien");
-    $stmt->bindParam(':id_praticien', $_SESSION['id_praticien']);
-
-    $stmt->execute();
-}
-
 if (!empty($_SESSION['specialite'])) {
     $newSpecialite = htmlspecialchars($_SESSION['specialite']);
 

@@ -5,6 +5,10 @@
 
   #Récupération du formulaire choisi
   $form = $_GET['form'];
+
+  if ($form != 1 && $form != 2 && $form != 3){
+    header('Location: form.php?form=2');
+  }
 ?>
 
 <!DOCTYPE html>

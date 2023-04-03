@@ -4,104 +4,214 @@ if (!empty($_POST)) {
     # Récupération du formulaire choisi
     $form = $_GET['form'];
 
-    switch ($form) {
-
-        case 1:
-            # Définition du tableau de maladies 
-
-            $maladies = array(
-                "Pneumonie" => 0,
-                "Grippe" => 0,
-                "Appendicite" => 0,
-                "Gastro-entérite" => 0,
-                "Anémie" => 0,
-                "Migraine" => 0,
-                "Bronchite" => 0,
-                ""
-            );
-
-            # Changement de variables pour affecter les maladies 
-            $i = 0;
-            while ($i < 13) {
-                if (isset($_POST[$i])){
-                    if ($_POST[$i] == "on") {
-                        switch ($_POST[$i]) {
-                            case 1 :
-                                $_SESSION['douleurAbdo'] = "on";
-                                break;
-                            
-                            case 2 :
-                                $_SESSION['douleurArti'] = "on";
-                                break;
-                            
-                            case 3 :
-                                $_SESSION['douleurGorge'] = "on";
-                                break;
-                            
-                            case 4 :
-                                $_SESSION['douleurDos'] = "on";
-                                break;
-
-                            case 5 :
-                                $_SESSION['eruptionsCutanees'] = "on";
-                                break;
-
-                            case 6 :
-                                $_SESSION['essoufflement'] = "on";
-                                break;
-                            
-                            case 7 :
-                                $_SESSION['fatigue'] = "on";
-                                break;
-                            
-                            case 8 :
-                                $_SESSION['fièvre'] = "on";
-                                break;
-
-                            case 9 :
-                                $_SESSION['mauxTete'] = "on";
-                                break;
-
-                            case 10 :
-                                $_SESSION['nausees'] = "on";
-                                break;
-                            
-                            case 11 :
-                                $_SESSION['pertePoids'] = "on";
-                                break;
-                            
-                            case 12 :
-                                $_SESSION['toux'] = "on";
-                                break;
-
-                            case 13 :
-                                $_SESSION['troubleHumeur'] = "on";
-                                break;
+    $maladies = array(
+        "infarctus du myocarde" => 0,
+        "insuffisance cardiaque" => 0,
+        "angine de poitrine" => 0,
+        "cardiomyopathie" => 0,
+        "fibrillation auriculaire" => 0,
+        "maladie artérielle périphérique" => 0,
+        "maladie coronarienne" => 0
+    );
+    # Changement de variables pour affecter les maladies 
+    $i = 1;
+    $symptome = "";
+    while ($i < 16) {
+        if (isset($_POST[$i])){
+            if ($_POST[$i] == "on") {
+                switch ($i) {
+                    case 1 :
+                        if ($symptome == "") {
+                            $symptome = "anxiété";
                         }
-                    }
+                        else {
+                            $symptome = $symptome . " - " . "anxiété";
+                        }
+                        $maladies["insuffisance cardiaque"] += 1;
+                        $maladies["angine de poitrine"] += 1;
+                        $maladies["maladie coronarienne"] += 1;
+                        break;
+                    
+                    case 2 :
+                        if ($symptome == "") {
+                            $symptome = "douleur abdominale";
+                        }
+                        else {
+                            $symptome = $symptome . " - " . "douleur abdominale";
+                        }
+                        $maladies["infarctus du myocarde"] += 1;
+                        break;
+                    
+                    case 3 :
+                        if ($symptome == "") {
+                            $symptome = "douleur au cou ou à la machoire";
+                        }
+                        else {
+                            $symptome = $symptome . " - " . "douleur au cou ou à la machoire";
+                        }
+                        $maladies["infarctus du myocarde"] += 1;
+                        $maladies["angine de poitrine"] += 1;
+                        $maladies["maladie coronarienne"] += 1;
+                        break;
+                    
+                    case 4 :
+                        if ($symptome == "") {
+                            $symptome = "douleur ou faiblesse dans les bras ou dans les jambes";
+                        }
+                        else {
+                            $symptome = $symptome . " - " . "douleur ou faiblesse dans les bras ou dans les jambes";
+                        }
+                        $maladies["maladie artérielle périphérique"] += 1;
+                        break;
+
+                    case 5 :
+                        if ($symptome == "") {
+                            $symptome = "douleur ou pression à la poitrine";
+                        }
+                        else {
+                            $symptome = $symptome . " - " . "douleur ou pression à la poitrine";
+                        }
+                        $maladies["infarctus du myocarde"] += 1;
+                        $maladies["angine de poitrine"] += 1;
+                        $maladies["cardiomyopathie"] += 1;
+                        break;
+
+                    case 6 :
+                        if ($symptome == "") {
+                            $symptome = "essoufflement";
+                        }
+                        else {
+                            $symptome = $symptome . " - " . "essoufflement";
+                        }
+                        $maladies["insuffisance cardiaque"] += 1;
+                        $maladies["cardiomyopathie"] += 1;
+                        break;
+                    
+                    case 7 :
+                        if ($symptome == "") {
+                            $symptome = "essoufflement pendant l'exercice";
+                        }
+                        else {
+                            $symptome = $symptome . " - " . "essoufflement pendant l'exercice";
+                        }
+                        $maladies["insuffisance cardiaque"] += 1;
+                        $maladies["maladie coronarienne"] += 1;
+                        break;
+                    
+                    case 8 :
+                        if ($symptome == "") {
+                            $symptome = "étourdissement ou évanouissement";
+                        }
+                        else {
+                            $symptome = $symptome . " - " . "étourdissement ou évanouissement";
+                        }
+                        $maladies["insuffisance cardiaque"] += 1;
+                        break;
+
+                    case 9 :
+                        if ($symptome == "") {
+                            $symptome = "fatigue";
+                        }
+                        else {
+                            $symptome = $symptome . " - " . "fatigue";
+                        }
+                        $maladies["insuffisance cardiaque"] += 1;
+                        $maladies["fibrillation auriculaire"] += 1;
+                        $maladies["maladie coronarienne"] += 1;
+                        break;
+
+                    case 10 :
+                        if ($symptome == "") {
+                            $symptome = "gonflement des jambes, des chevilles ou des pieds";
+                        }
+                        else {
+                            $symptome = $symptome . " - " . "gonflement des jambes, des chevilles ou des pieds";
+                        }
+                        $maladies["insuffisance cardiaque"] += 1;
+                        $maladies["maladie artérielle périphérique"] += 1;
+                        break;
+                    
+                    case 11 :
+                        if ($symptome == "") {
+                            $symptome = "nausées ou vomissements";
+                        }
+                        else {
+                            $symptome = $symptome . " - " . "nausées ou vomissements";
+                        }
+                        $maladies["insuffisance cardiaque"] += 1;
+                        $maladies["infarctus du myocarde"] += 1;
+                        break;
+                    
+                    case 12 :
+                        if ($symptome == "") {
+                            $symptome = "palpitations";
+                        }
+                        else {
+                            $symptome = $symptome . " - " . "palpitations";
+                        }
+                        $maladies["fibrillation auriculaire"] += 1;
+                        break;
+
+                    case 13 :
+                        if ($symptome == "") {
+                            $symptome = "transpiration excessive";
+                        }
+                        else {
+                            $symptome = $symptome . " - " . "transpiration excessive";
+                        }
+                        $maladies["insuffisance cardiaque"] += 1;
+                        $maladies["infarctus du myocarde"] += 1;
+                        break;
+                    case 14 :
+                        if ($symptome == "") {
+                            $symptome = "troubles de la mémoire";
+                        }
+                        else {
+                            $symptome = $symptome . " - " . "troubles de la mémoire";
+                        }
+                        $maladies["insuffisance cardiaque"] += 1;
+                        break;
+                    case 15 :
+                        if ($symptome == "") {
+                            $symptome = "troubles du sommeil";
+                        }
+                        else {
+                            $symptome = $symptome . " - " . "troubles du sommeil";
+                        }
+                        $maladies["insuffisance cardiaque"] += 1;
+                        break;
                 }
-            $i = $i + 1;
-
-            # Algo pour définir la maladie 
-        }  
-
-            break;
-
-        # Algo de cardiologie
-        case 2:
-            echo "algorithme de cardiologie";
-            break;
-
-        # Algo de gériatrie
-        case 3:
-            echo "algorithme de gériatrie";
-            break;
-
-        default:
-            echo "Cette spécialité n'existe pas.";
-            break;  
+            }
+        }
+        $i = $i + 1;
     }
+            
+    // Trouver l'entrée qui a la plus grande valeur
+    $max_value = max(array_values($maladies));
+    $_SESSION['maladie'] = array_search($max_value, $maladies);
+    $_SESSION['symptome'] = $symptome;
+
+    // Préparation de la requête préparée
+    $sql = "INSERT INTO patient (nom, prenom, age, mail, tel, departement, medecin_traitant, maladie, symptome, messageprat) VALUES (:nom, :prenom, :age, :mail, :tel, :departement, :medecin_traitant, :maladie, :symptome, :messageprat)";
+    $stmt = $conn->prepare($sql);
+
+    // Liaison des variables avec les paramètres de la requête préparée
+    $stmt->bindParam(':nom', $nom);
+    $stmt->bindParam(':prenom', $prenom);
+    $stmt->bindParam(':age', $prenom);
+    $stmt->bindParam(':mail', $email);
+    $stmt->bindParam(':tel', $specialite);
+    $stmt->bindParam(':medecin_traitant', $departement);
+    $stmt->bindParam(':maladie', $_SESSION['maladie']);
+    $stmt->bindParam(':symptome', $_SESSION['symptome']);
+    $stmt->bindParam(':messageprat', $timestamp);
+
+    // Exécution de la requête préparée
+    $stmt->execute();
     
+    // Vide la variable et redirige l'utilisateur sur la page login.php
+    unset($_POST);
+    header('Location: login.php');    
 }
 
 ?>
